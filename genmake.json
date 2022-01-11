@@ -1,0 +1,100 @@
+{
+	"variables":
+	{
+		"gcc-x64":
+		{
+			"REPS": "/home/denis/reps"
+		},
+
+		"clang-wasm32":
+		{
+			"REPS": "/home/denis/reps",
+			"FLAGS_ADD": "-matomics -mbulk-memory"
+		},
+
+		"clang-wasm64":
+		{
+			"REPS": "/home/denis/reps",
+			"FLAGS_ADD": "-matomics -mbulk-memory"
+		}
+	},
+
+	"entries":
+	{
+		"type": "static",
+
+		"name": "math",
+
+		"include_directories": "$(REPS)/renderity",
+
+		"flags": "$(STD_20) $(NO_LINK) $(VERBOSE) $(OPT_FASTX) $(SSE) $(FLAGS_ADD) -fPIC",
+
+		"watch_files":
+		[
+			"$(SRC)/const.cpp",
+
+			{
+				"file": "$(SRC)/vec4/vec4.cpp",
+				"watch_files": "$(SRC)/vec4/vec4.h"
+			},
+
+			{
+				"file": "$(SRC)/quat/quat.cpp",
+				"watch_files": "$(SRC)/quat/quat.h"
+			},
+
+			{
+				"file": "$(SRC)/quat/quat-32.cpp",
+				"watch_files": "$(SRC)/quat/quat.h"
+			},
+
+			{
+				"file": "$(SRC)/quat/quat-128.cpp",
+				"watch_files": "$(SRC)/quat/quat.h"
+			},
+
+			{
+				"file": "$(SRC)/mat4/mat4.cpp",
+				"watch_files": "$(SRC)/mat4/mat4.h"
+			},
+
+			{
+				"file": "$(SRC)/mat4/mat4-32.cpp",
+				"watch_files": "$(SRC)/mat4/mat4.h"
+			},
+
+			{
+				"file": "$(SRC)/mat4/mat4-128.cpp",
+				"watch_files": "$(SRC)/mat4/mat4.h"
+			},
+
+			{
+				"file": "$(SRC)/object/object.cpp",
+
+				"watch_files":
+				[
+					"$(SRC)/vec4/vec4.h",
+					"$(SRC)/quat/quat.h",
+					"$(SRC)/mat4/mat4.h",
+					"$(SRC)/object/object.h"
+				]
+			},
+
+			{
+				"file": "$(SRC)/orbit/orbit.cpp",
+
+				"watch_files":
+				[
+					"$(SRC)/mat4/mat4.h",
+					"$(SRC)/object/object.h",
+					"$(SRC)/orbit/orbit.h"
+				]
+			},
+
+			{
+				"file": "$(SRC)/util/util.cpp",
+				"watch_files": "$(SRC)/util/util.h"
+			}
+		]
+	}
+}
