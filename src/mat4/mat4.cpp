@@ -13,8 +13,7 @@
 
 
 
-// size_t
-#include <cstddef>
+#include <cstddef> // size_t
 // memcpy, memset
 #include <cstring>
 // printf

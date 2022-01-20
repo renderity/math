@@ -6,8 +6,7 @@
 
 
 
-// size_t
-#include <cstddef>
+#include <cstddef> // size_t
 #include <initializer_list>
 #include <vector>
 

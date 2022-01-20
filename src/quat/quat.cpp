@@ -2,8 +2,7 @@
 
 
 
-// size_t
-#include <cstddef>
+#include <cstddef> // size_t
 // uint8_t
 #include <cstdint>
 // memcpy, memset
