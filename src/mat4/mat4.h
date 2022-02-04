@@ -39,21 +39,38 @@ namespace RDTY::MATH
 
 		void makeProjPersp
 		(
-			const float&,
-			const float&,
-			const float&,
-			const float&,
-			const float&
+			#ifdef __wasm__
+				const float,
+				const float,
+				const float,
+				const float,
+				const float
+			#else
+				const float&,
+				const float&,
+				const float&,
+				const float&,
+				const float&
+			#endif
 		);
 
 		void makeProjPersp
 		(
-			const float&,
-			const float&,
-			const float&,
-			const float&,
-			const float&,
-			const float&
+			#ifdef __wasm__
+				const float,
+				const float,
+				const float,
+				const float,
+				const float,
+				const float
+			#else
+				const float&,
+				const float&,
+				const float&,
+				const float&,
+				const float&,
+				const float&
+			#endif
 		);
 
 		// Parameters are of void* type to allow using with both vector and scalar float types.
