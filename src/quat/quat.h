@@ -12,6 +12,10 @@ namespace RDTY::MATH
 	// Needs to be dirived from Vec4 ?
 	struct alignas(16) Quat
 	{
+		static Quat* New (void);
+
+
+
 		alignas(16) float data [4];
 
 

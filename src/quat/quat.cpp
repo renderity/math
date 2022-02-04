@@ -28,6 +28,15 @@ namespace RDTY::MATH
 
 
 
+	Quat* Quat::New (void)
+	{
+		Quat* quat { new Quat };
+
+		return quat;
+	}
+
+
+
 	Quat::Quat (void)
 	{
 		memcpy(data, CONST::IDENT_4, CONST::FLOAT_SIZE_4);

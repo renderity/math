@@ -60,6 +60,15 @@ namespace RDTY::MATH
 
 
 
+	Mat4* Mat4::New (void)
+	{
+		Mat4* mat4 { new Mat4 };
+
+		return mat4;
+	}
+
+
+
 	Mat4::Mat4 (void)
 	{
 		memcpy(data, IDENT_16, CONST::FLOAT_SIZE_16);
@@ -138,11 +147,19 @@ namespace RDTY::MATH
 
 	void Mat4::makeProjPersp
 	(
-		const float& fov,
-		const float& aspect,
-		const float& _near,
-		const float& _far,
-		const float& zoom
+		#ifdef __wasm__
+			const float fov,
+			const float aspect,
+			const float _near,
+			const float _far,
+			const float zoom
+		#else
+			const float& fov,
+			const float& aspect,
+			const float& _near,
+			const float& _far,
+			const float& zoom
+		#endif
 	)
 	{
 		const float top = _near * tan(0.017453292f * 0.5f * fov) / zoom;
@@ -173,12 +190,21 @@ namespace RDTY::MATH
 
 	void Mat4::makeProjPersp
 	(
-	  const float& left,
-	  const float& right,
-	  const float& top,
-	  const float& bottom,
-	  const float& _near,
-	  const float& _far
+		#ifdef __wasm__
+			const float left,
+			const float right,
+			const float top,
+			const float bottom,
+			const float _near,
+			const float _far
+		#else
+			const float& left,
+			const float& right,
+			const float& top,
+			const float& bottom,
+			const float& _near,
+			const float& _far
+		#endif
 	)
 	{
 		SET
