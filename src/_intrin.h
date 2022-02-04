@@ -17,15 +17,28 @@
 	#define __m128 __f32x4
 	#define _mm_load_ps wasm_v128_load
 	#define _mm_load_ps1 wasm_v128_load32_splat
-	#define _MM_SHUFFLE(b, a, d, c) (a * 4) + 0, (a * 4) + 1, (a * 4) + 2, (a * 4) + 3, (b * 4) + 0, (b * 4) + 1, (b * 4) + 2, (b * 4) + 3, ((c + 4) * 4) + 0, ((c + 4) * 4) + 1, ((c + 4) * 4) + 2, ((c + 4) * 4) + 3, ((d + 4) * 4) + 0, ((d + 4) * 4) + 1, ((d + 4) * 4) + 2, ((d + 4) * 4) + 3
-	#define _mm_shuffle_ps __builtin_wasm_shuffle_i8x16
-	// make wasm_f32x4_make(1.0f, -1.0f, 1.0f, -1.0f) constant
 	#define _mm_addsub_ps(a, b) wasm_f32x4_add(a, wasm_f32x4_mul(b, wasm_f32x4_make(1.0f, -1.0f, 1.0f, -1.0f)))
 	#define _mm_store_ps wasm_v128_store
 	#define _mm_set1_ps wasm_f32x4_splat
 	#define _mm_mul_ps wasm_f32x4_mul
 	#define _mm_add_ps wasm_f32x4_add
 	#define _mm_sub_ps wasm_f32x4_sub
+	#define _mm_shuffle_ps __builtin_wasm_shuffle_i8x16
+
+	#define _MM_SHUFFLE(b, a, d, c)\
+		(a * 4) + 0, (a * 4) + 1, (a * 4) + 2, (a * 4) + 3,\
+		(b * 4) + 0, (b * 4) + 1, (b * 4) + 2, (b * 4) + 3,\
+		(c * 4) + 0, (c * 4) + 1, (c * 4) + 2, (c * 4) + 3,\
+		(d * 4) + 0, (d * 4) + 1, (d * 4) + 2, (d * 4) + 3
+
+	/**
+	 * Used to wrap last 2 argumants of _MM_SHUFFLE
+	 * if first 2 arguments of _mm_shuffle_ps are different.
+	*/
+	constexpr int _MM_SHUFFLE_EL (const int x)
+	{
+		return (x + 4);
+	}
 
 	INLINE __m128 _mm_loadr_ps (const float* __p)
 	{
@@ -33,7 +46,11 @@
 
 		return (__m128) _mm_shuffle_ps(__v, __v, _MM_SHUFFLE(3, 2, 1, 0));
 	}
+
+	// make wasm_f32x4_make(1.0f, -1.0f, 1.0f, -1.0f) constant
 #else
+	#define _MM_SHUFFLE_EL(x) x
+
 	#include <immintrin.h>
 #endif
 

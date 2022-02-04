@@ -53,9 +53,9 @@
 	alignas(16) const __m128 zz_zz_yy = _mm_shuffle_ps(xx_yy_zz, xx_yy_zz, _MM_SHUFFLE(3, 1, 2, 2));\
 	alignas(16) const __m128 pow = _mm_sub_ps(CONST_ONE, _mm_add_ps(yy_xx_xx, zz_zz_yy));\
 \
-	alignas(16) const __m128 sum_pow = _mm_shuffle_ps(sum, pow, _MM_SHUFFLE(0, 2, 0, 1));\
-	alignas(16) const __m128 pow_dif = _mm_shuffle_ps(pow, dif, _MM_SHUFFLE(0, 1, 1, 0));\
-	alignas(16) const __m128 dif_sum = _mm_shuffle_ps(dif, sum, _MM_SHUFFLE(1, 2, 2, 0));\
+	alignas(16) const __m128 sum_pow = _mm_shuffle_ps(sum, pow, _MM_SHUFFLE(0, 2, _MM_SHUFFLE_EL(0), _MM_SHUFFLE_EL(1)));\
+	alignas(16) const __m128 pow_dif = _mm_shuffle_ps(pow, dif, _MM_SHUFFLE(0, 1, _MM_SHUFFLE_EL(1), _MM_SHUFFLE_EL(0)));\
+	alignas(16) const __m128 dif_sum = _mm_shuffle_ps(dif, sum, _MM_SHUFFLE(1, 2, _MM_SHUFFLE_EL(2), _MM_SHUFFLE_EL(0)));\
 \
 	mat[0] = _mm_shuffle_ps(sum_pow, dif, _MM_SHUFFLE(3, 1, 1, 3));\
 	mat[1] = _mm_shuffle_ps(pow_dif, sum, _MM_SHUFFLE(3, 2, 1, 3));\
@@ -96,15 +96,15 @@ namespace RDTY::MATH
 	{
 		__m128* _this = (__m128*) this;
 
-		alignas(16) __m128 a = _mm_shuffle_ps(_this[0], _this[1], _MM_SHUFFLE(1, 0, 1, 0));
-		alignas(16) __m128 b = _mm_shuffle_ps(_this[2], _this[3], _MM_SHUFFLE(1, 0, 1, 0));
-		alignas(16) __m128 c = _mm_shuffle_ps(_this[0], _this[1], _MM_SHUFFLE(3, 2, 3, 2));
-		alignas(16) __m128 d = _mm_shuffle_ps(_this[2], _this[3], _MM_SHUFFLE(3, 2, 3, 2));
+		alignas(16) __m128 a = _mm_shuffle_ps(_this[0], _this[1], _MM_SHUFFLE(1, 0, _MM_SHUFFLE_EL(1), _MM_SHUFFLE_EL(0)));
+		alignas(16) __m128 b = _mm_shuffle_ps(_this[2], _this[3], _MM_SHUFFLE(1, 0, _MM_SHUFFLE_EL(1), _MM_SHUFFLE_EL(0)));
+		alignas(16) __m128 c = _mm_shuffle_ps(_this[0], _this[1], _MM_SHUFFLE(3, 2, _MM_SHUFFLE_EL(3), _MM_SHUFFLE_EL(2)));
+		alignas(16) __m128 d = _mm_shuffle_ps(_this[2], _this[3], _MM_SHUFFLE(3, 2, _MM_SHUFFLE_EL(3), _MM_SHUFFLE_EL(2)));
 
-		_this[0] = _mm_shuffle_ps(a, b, _MM_SHUFFLE(2, 0, 2, 0));
-		_this[1] = _mm_shuffle_ps(a, b, _MM_SHUFFLE(3, 1, 3, 1));
-		_this[2] = _mm_shuffle_ps(c, d, _MM_SHUFFLE(2, 0, 2, 0));
-		_this[3] = _mm_shuffle_ps(c, d, _MM_SHUFFLE(3, 1, 3, 1));
+		_this[0] = _mm_shuffle_ps(a, b, _MM_SHUFFLE(2, 0, _MM_SHUFFLE_EL(2), _MM_SHUFFLE_EL(0)));
+		_this[1] = _mm_shuffle_ps(a, b, _MM_SHUFFLE(3, 1, _MM_SHUFFLE_EL(3), _MM_SHUFFLE_EL(1)));
+		_this[2] = _mm_shuffle_ps(c, d, _MM_SHUFFLE(2, 0, _MM_SHUFFLE_EL(2), _MM_SHUFFLE_EL(0)));
+		_this[3] = _mm_shuffle_ps(c, d, _MM_SHUFFLE(3, 1, _MM_SHUFFLE_EL(3), _MM_SHUFFLE_EL(1)));
 	}
 
 	void Mat4::preTrans128 (const void* vec)
@@ -139,18 +139,18 @@ namespace RDTY::MATH
 
 		alignas(16) const __m128 a = _data[3];
 
-		alignas(16) const __m128 e = _mm_shuffle_ps(_data[0], _data[1], _MM_SHUFFLE(1, 0, 1, 0));
-		alignas(16) const __m128 f = _mm_shuffle_ps(_data[2], IDENT_4, _MM_SHUFFLE(1, 0, 1, 0));
-		alignas(16) const __m128 i = _mm_shuffle_ps(_data[0], _data[1], _MM_SHUFFLE(3, 2, 3, 2));
-		alignas(16) const __m128 j = _mm_shuffle_ps(_data[2], IDENT_4, _MM_SHUFFLE(3, 2, 3, 2));
+		alignas(16) const __m128 e = _mm_shuffle_ps(_data[0], _data[1], _MM_SHUFFLE(1, 0, _MM_SHUFFLE_EL(1), _MM_SHUFFLE_EL(0)));
+		alignas(16) const __m128 f = _mm_shuffle_ps(_data[2], IDENT_4, _MM_SHUFFLE(1, 0, _MM_SHUFFLE_EL(1), _MM_SHUFFLE_EL(0)));
+		alignas(16) const __m128 i = _mm_shuffle_ps(_data[0], _data[1], _MM_SHUFFLE(3, 2, _MM_SHUFFLE_EL(3), _MM_SHUFFLE_EL(2)));
+		alignas(16) const __m128 j = _mm_shuffle_ps(_data[2], IDENT_4, _MM_SHUFFLE(3, 2, _MM_SHUFFLE_EL(3), _MM_SHUFFLE_EL(2)));
 
 		alignas(16) const __m128 b = _mm_shuffle_ps(a, a, _MM_SHUFFLE(0, 0, 0, 0));
 		alignas(16) const __m128 c = _mm_shuffle_ps(a, a, _MM_SHUFFLE(1, 1, 1, 1));
 		alignas(16) const __m128 d = _mm_shuffle_ps(a, a, _MM_SHUFFLE(2, 2, 2, 2));
 
-		_data[0] = _mm_shuffle_ps(e, f, _MM_SHUFFLE(2, 0, 2, 0));
-		_data[1] = _mm_shuffle_ps(e, f, _MM_SHUFFLE(3, 1, 3, 1));
-		_data[2] = _mm_shuffle_ps(i, j, _MM_SHUFFLE(2, 0, 2, 0));
+		_data[0] = _mm_shuffle_ps(e, f, _MM_SHUFFLE(2, 0, _MM_SHUFFLE_EL(2), _MM_SHUFFLE_EL(0)));
+		_data[1] = _mm_shuffle_ps(e, f, _MM_SHUFFLE(3, 1, _MM_SHUFFLE_EL(3), _MM_SHUFFLE_EL(1)));
+		_data[2] = _mm_shuffle_ps(i, j, _MM_SHUFFLE(2, 0, _MM_SHUFFLE_EL(2), _MM_SHUFFLE_EL(0)));
 		_data[3] = _mm_sub_ps(_mm_sub_ps(_mm_sub_ps(IDENT_4, _mm_mul_ps(_data[0], b)), _mm_mul_ps(_data[1], c)), _mm_mul_ps(_data[2], d));
 	}
 }
