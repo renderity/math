@@ -50,7 +50,12 @@
 
 			{
 				"file": "$(SRC)/quat/quat-128.cpp",
-				"watch_files": "$(SRC)/quat/quat.h"
+
+				"watch_files":
+				[
+					"$(SRC)/_intrin.h",
+					"$(SRC)/quat/quat.h"
+				]
 			},
 
 			{
@@ -65,7 +70,12 @@
 
 			{
 				"file": "$(SRC)/mat4/mat4-128.cpp",
-				"watch_files": "$(SRC)/mat4/mat4.h"
+
+				"watch_files":
+				[
+					"$(SRC)/_intrin.h",
+					"$(SRC)/mat4/mat4.h"
+				]
 			},
 
 			{
