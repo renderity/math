@@ -16,6 +16,10 @@ namespace RDTY::MATH
 {
 	struct alignas(16) Vec4
 	{
+		static Vec4* New (void);
+
+
+
 		alignas(16) float data [4];
 
 

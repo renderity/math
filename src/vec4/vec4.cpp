@@ -23,6 +23,13 @@ namespace RDTY::MATH
 
 
 
+	Vec4* Vec4::New (void)
+	{
+		return new Vec4;
+	}
+
+
+
 	Vec4::Vec4 (void)
 	{
 		memcpy(data, CONST::ZERO_4, CONST::FLOAT_SIZE_4);
