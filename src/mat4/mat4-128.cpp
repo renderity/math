@@ -57,9 +57,9 @@
 	alignas(16) const __m128 pow_dif = _mm_shuffle_ps(pow, dif, _MM_SHUFFLE(0, 1, _MM_SHUFFLE_EL(1), _MM_SHUFFLE_EL(0)));\
 	alignas(16) const __m128 dif_sum = _mm_shuffle_ps(dif, sum, _MM_SHUFFLE(1, 2, _MM_SHUFFLE_EL(2), _MM_SHUFFLE_EL(0)));\
 \
-	mat[0] = _mm_shuffle_ps(sum_pow, dif, _MM_SHUFFLE(3, 1, 1, 3));\
-	mat[1] = _mm_shuffle_ps(pow_dif, sum, _MM_SHUFFLE(3, 2, 1, 3));\
-	mat[2] = _mm_shuffle_ps(dif_sum, pow, _MM_SHUFFLE(3, 2, 1, 3));\
+	mat[0] = _mm_shuffle_ps(sum_pow, dif, _MM_SHUFFLE(3, 1, _MM_SHUFFLE_EL(1), _MM_SHUFFLE_EL(3)));\
+	mat[1] = _mm_shuffle_ps(pow_dif, sum, _MM_SHUFFLE(3, 2, _MM_SHUFFLE_EL(1), _MM_SHUFFLE_EL(3)));\
+	mat[2] = _mm_shuffle_ps(dif_sum, pow, _MM_SHUFFLE(3, 2, _MM_SHUFFLE_EL(1), _MM_SHUFFLE_EL(3)));\
 	mat[3] = _mm_load_ps(CONST::IDENT_4);
 
 

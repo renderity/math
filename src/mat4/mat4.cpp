@@ -14,11 +14,8 @@
 
 
 #include <cstddef> // size_t
-// memcpy, memset
 #include <cstring>
-// printf
 #include <cstdio>
-// tan
 #include <cmath>
 
 #include "math/src/mat4/mat4.h"
@@ -62,9 +59,7 @@ namespace RDTY::MATH
 
 	Mat4* Mat4::New (void)
 	{
-		Mat4* mat4 { new Mat4 };
-
-		return mat4;
+		return new Mat4;
 	}
 
 
