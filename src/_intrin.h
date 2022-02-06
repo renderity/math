@@ -25,11 +25,37 @@
 	#define _mm_sub_ps wasm_f32x4_sub
 	#define _mm_shuffle_ps __builtin_wasm_shuffle_i8x16
 
-	#define _MM_SHUFFLE(b, a, d, c)\
-		(a * 4) + 0, (a * 4) + 1, (a * 4) + 2, (a * 4) + 3,\
-		(b * 4) + 0, (b * 4) + 1, (b * 4) + 2, (b * 4) + 3,\
-		(c * 4) + 0, (c * 4) + 1, (c * 4) + 2, (c * 4) + 3,\
-		(d * 4) + 0, (d * 4) + 1, (d * 4) + 2, (d * 4) + 3
+	#define _MM_SHUFFLE(a, b, c, d)\
+		(d * 4), (d * 4) + 1, (d * 4) + 2, (d * 4) + 3,\
+		(c * 4), (c * 4) + 1, (c * 4) + 2, (c * 4) + 3,\
+		(_MM_SHUFFLE_EL(b) * 4), (_MM_SHUFFLE_EL(b) * 4) + 1, (_MM_SHUFFLE_EL(b) * 4) + 2, (_MM_SHUFFLE_EL(b) * 4) + 3,\
+		(_MM_SHUFFLE_EL(a) * 4), (_MM_SHUFFLE_EL(a) * 4) + 1, (_MM_SHUFFLE_EL(a) * 4) + 2, (_MM_SHUFFLE_EL(a) * 4) + 3
+
+	// #define _MM_SHUFFLE(b, a, d, c)\
+	// 	__shuf1(a), __shuf2(a), __shuf3(a), __shuf4(a),\
+	// 	__shuf1(b), __shuf2(b), __shuf3(b), __shuf4(b),\
+	// 	__shuf1c, __shuf2c, __shuf3c, __shuf4c,\
+	// 	__shuf1d, __shuf2d, __shuf3d, __shuf4d,
+
+	constexpr int __shuf1 (const int x)
+	{
+		return (x + 4);
+	}
+
+	constexpr int __shuf2 (const int x)
+	{
+		return ((x + 4) + 1);
+	}
+
+	constexpr int __shuf3 (const int x)
+	{
+		return ((x + 4) + 2);
+	}
+
+	constexpr int __shuf4 (const int x)
+	{
+		return ((x + 4) + 3);
+	}
 
 	/**
 	 * Used to wrap last 2 argumants of _MM_SHUFFLE

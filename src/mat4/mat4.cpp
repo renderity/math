@@ -39,7 +39,7 @@ namespace RDTY::MATH
 		0.0f, /**/ 0.0f, /**/ 1.0f, /**/ 0.0f
 	};
 
-	alignas(16) const float IDENT_16 [16]
+	alignas(16) extern const float IDENT_16 [16]
 	{
 		1.0f, /**/ 0.0f, /**/ 0.0f, /**/ 0.0f,
 		0.0f, /**/ 1.0f, /**/ 0.0f, /**/ 0.0f,

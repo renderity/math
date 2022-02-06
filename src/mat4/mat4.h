@@ -79,12 +79,14 @@ namespace RDTY::MATH
 		void mul128 (const void*, const void*);
 		void transp32 (void);
 		void transp128 (void);
+		void makeTrans128 (const void*);
 		void preTrans32 (const void*);
 		void preTrans128 (const void*);
 		void postTrans32 (const void*);
 		void postTrans128 (const void*);
 		void makeRotationFromQuat32 (const void*);
 		void makeRotationFromQuat128 (const void*);
+		void preRotQuat128 (const void*);
 		void invns32 (void);
 		void invns128 (void);
 		void print (void);
