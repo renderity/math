@@ -33,7 +33,7 @@ namespace RDTY::MATH
 		object.preRotY(rotation_speed_y);
 	}
 
-	void Orbit::rotate2 (const float rotation_speed_x, const float rotation_speed_y)
+	void Orbit::rotate3 (const float rotation_speed_x, const float rotation_speed_y)
 	{
 		object.postRotX(rotation_speed_x);
 		object.preRotY(rotation_speed_y);

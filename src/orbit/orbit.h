@@ -33,7 +33,7 @@ namespace RDTY::MATH
 		void rotate (void);
 		// use const float& macro
 		void rotate2 (const float&, const float&);
-		void rotate2 (const float, const float);
+		void rotate3 (const float, const float);
 		void transX (void);
 		void transY (void);
 		void transZ (void);
