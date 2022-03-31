@@ -10,7 +10,6 @@
 
 namespace RDTY::MATH
 {
-
 	struct alignas(16) Orbit
 	{
 		RDTY::MATH::Mat4 projection_matrix;
@@ -34,6 +33,7 @@ namespace RDTY::MATH
 		// use const float& macro
 		void rotate2 (const float&, const float&);
 		void rotate3 (const float, const float);
+		void rotate3 (void);
 		void transX (void);
 		void transY (void);
 		void transZ (void);

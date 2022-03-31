@@ -39,6 +39,12 @@ namespace RDTY::MATH
 		object.preRotY(rotation_speed_y);
 	}
 
+	void Orbit::rotate3 (void)
+	{
+		object.postRotX(1.0f);
+		object.preRotY(1.0f);
+	}
+
 	void Orbit::transX (void)
 	{
 		object.transX(translation_speed_x);
