@@ -20,9 +20,12 @@
 	#define _mm_addsub_ps(a, b) wasm_f32x4_add(a, wasm_f32x4_mul(b, wasm_f32x4_make(1.0f, -1.0f, 1.0f, -1.0f)))
 	#define _mm_store_ps wasm_v128_store
 	#define _mm_set1_ps wasm_f32x4_splat
-	#define _mm_mul_ps wasm_f32x4_mul
 	#define _mm_add_ps wasm_f32x4_add
 	#define _mm_sub_ps wasm_f32x4_sub
+	#define _mm_mul_ps wasm_f32x4_mul
+	#define _mm_div_ps wasm_f32x4_div
+	#define _mm_min_ps wasm_i32x4_min
+	#define _mm_max_ps wasm_i32x4_max
 	#define _mm_shuffle_ps __builtin_wasm_shuffle_i8x16
 
 	#define _MM_SHUFFLE(a, b, c, d)\
