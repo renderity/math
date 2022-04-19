@@ -24,8 +24,8 @@
 	#define _mm_sub_ps wasm_f32x4_sub
 	#define _mm_mul_ps wasm_f32x4_mul
 	#define _mm_div_ps wasm_f32x4_div
-	#define _mm_min_ps wasm_i32x4_min
-	#define _mm_max_ps wasm_i32x4_max
+	#define _mm_min_ps wasm_f32x4_min
+	#define _mm_max_ps wasm_f32x4_max
 	#define _mm_shuffle_ps __builtin_wasm_shuffle_i8x16
 
 	#define _MM_SHUFFLE(a, b, c, d)\
